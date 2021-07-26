@@ -9,7 +9,16 @@
   align-items: center;
 }
 
-input {
-  width: 250px;
-  height: 40px;
+.formik_field {
+  width: 150px;
+  height: 20px;
+  border-width: 3px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.validationWarning {
+  color: red
 }
