@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { users } = require("../models");
-const db = require('../index')
+//const db = require('../index')
 
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
@@ -47,9 +47,9 @@ router.get("/", async (req, res) => {
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         console.log(validPassword)
         if(validPassword){
-          req.session.user = user;
-          console.log(req.session.user);
-          res.send(user);
+          // req.session.user = user;
+          res.send("Correct password!")
+          // res.send(user);
         }else{
           res.send("Incorrect password!")
         }

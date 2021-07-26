@@ -6,24 +6,24 @@ import * as Yup from "yup";
 
 export default function Register() {
 
-  const [unavailableEmailMessage, setUnavailableEmailMessage] = useState("");
+  const [message, setMessage] = useState("");
   
   const initialValues = {
     username: "",
     password: "",
     email: "",
-    clearanceLevel: 2
+    role: "user"
   };
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
-    password: Yup.string().required("Required"),
-    email: Yup.string().email('Invalid email').required("Required"),
+    password: Yup.string().min(8, "Password must be at least 8 characters").matches(/(?=.*?[A-ZΑ-Ω])(?=.*?[0-9])(?=.*?[#$*&@])/, "Password must contain at least 1 capital letter, 1 digit and one special character (#$*&@)").required("Required"),
+    email: Yup.string().email('Invalid email').required("Required")
   });
 
   const register = (data) => {
     Axios.post("http://localhost:3001/register", data).then((response) => {
-      setUnavailableEmailMessage(response.data.message);
+      setMessage(response.data.message);
     });
   };
 
@@ -57,13 +57,13 @@ export default function Register() {
                   name="password"
                   autoComplete="off"
                 />
-                <button type="submit" disabled={!(Formik.isValid)}> Register </button>
+                <button type="submit" disabled={!(Formik.isValid && Formik.submitCount==0)}> Register </button>
               </Form>
             )
           }  
         }
       </Formik>       
-      <h3>{unavailableEmailMessage}</h3>
+      <h3>{message}</h3>
     </div>
   );
 }

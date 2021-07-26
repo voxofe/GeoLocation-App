@@ -1,0 +1,3 @@
+passwords: web2021AK$
+
+matches(/(?=.*?[^[α-ωΑ-Ω]])/,"Email addresses should only contain Latin characters")
