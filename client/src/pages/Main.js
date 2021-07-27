@@ -6,20 +6,27 @@ import Admin from "../components/Admin";
 
 export default function Main() {
   const [role, setRole] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState("");
 
-  Axios.defaults.withCredentials = true;
+  // Axios.defaults.withCredentials = true;
   useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setRole(response.data.user[0].role);
+    Axios.get("http://localhost:3001/login",{
+      headers:{
+        accessToken: sessionStorage.getItem("accessToken")
+      }
+    }).then((response) => {
+      if (response.data.loggedIn) {
+        setLoggedInUser(response.data.username);
+        setRole(response.data.role);  
       }
     });
   }, []);
 
   return (
     <div>
-      {role === "visitor" && <User />}
-      {role === "admin" && <Admin />}
+      <h2>Welcome to the Main Page!!</h2>
+      <h3>Username: {loggedInUser}</h3>
+      <h3>Role: {role}</h3>
     </div>
   );
 }

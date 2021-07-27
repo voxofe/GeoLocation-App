@@ -1,3 +1,11 @@
 passwords: web2021AK$
 
 matches(/(?=.*?[^[α-ωΑ-Ω]])/,"Email addresses should only contain Latin characters")
+
+
+secret: Gh5HQXhGBWs24fpAIRmAbn0TELM4
+
+    <div>
+      {role === "visitor" && <User />}
+      {role === "admin" && <Admin />}
+    </div>

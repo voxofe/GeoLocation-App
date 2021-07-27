@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,6 +7,7 @@ import * as Yup from "yup";
 export default function Register() {
 
   const [message, setMessage] = useState("");
+  const [registerDone, setRegisterDone] = useState("");
   
   const initialValues = {
     username: "",
@@ -22,10 +23,18 @@ export default function Register() {
   });
 
   const register = (data) => {
-    Axios.post("http://localhost:3001/register", data).then((response) => {
-      setMessage(response.data.message);
+      Axios.post("http://localhost:3001/register", data).then((response) => {
+        setMessage(response.data.message);
+        setRegisterDone(response.data.registerDone)
+        console.log(registerDone)
+      });
+  };  
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/register").then((response) => {
+      setRegisterDone(response.data.registerDone)
     });
-  };
+  }, []);
 
   return (
     <div className="App">
@@ -35,10 +44,8 @@ export default function Register() {
         validationSchema={validationSchema}
       >
         {Formik => {
-          console.log(Formik)
           return(
               <Form className="register">
-                <h1>Registration</h1>
                 <label>Username</label>
                 <ErrorMessage className="validationWarning" name="username" component="span" />
                 <Field className="formik_field"
@@ -56,14 +63,15 @@ export default function Register() {
                 <Field className="formik_field"
                   name="password"
                   autoComplete="off"
+                  type="password"
                 />
-                <button type="submit" disabled={!(Formik.isValid && Formik.submitCount==0)}> Register </button>
+                <h4 className="message">{message}</h4>
+                <button type="submit" disabled={!(Formik.isValid && !(registerDone))}>Register</button>
               </Form>
             )
           }  
         }
       </Formik>       
-      <h3>{message}</h3>
     </div>
   );
 }
