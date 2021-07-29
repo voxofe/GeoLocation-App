@@ -4,6 +4,7 @@ import "./App.css";
 import Main from "./pages/Main";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Upload from "./pages/Upload";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/login" exact render={(props) => <Login />} />
         <Route path="/register" exact render={(props) => <Register />} />
         <Route path="/" exact render={(props) => <Main />} />
+        <Route path="/upload" exact render={(props) => <Upload />} />
       </Switch>
     </Router>
   );

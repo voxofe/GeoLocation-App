@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {useHistory} from 'react-router-dom'
 
-export default function Login() {
+function Login() {
 
   const [message, setMessage] = useState("");
   const [loggedIn=false, setLoggedIn] = useState("");
@@ -66,7 +66,7 @@ export default function Login() {
                   type="password"
                 />
                 <h4 className="message">{message}</h4>
-                <button type="submit">Log In</button>
+                <button type="submit" className="formik_field">Log In</button>
               </Form>
             )
           }}
@@ -80,7 +80,7 @@ export default function Login() {
   }
 }
 
-
+export default Login
 
 
 

@@ -4,7 +4,7 @@ import "../App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-export default function Register() {
+function Register() {
 
   const [message, setMessage] = useState("");
   const [registerDone, setRegisterDone] = useState("");
@@ -25,8 +25,7 @@ export default function Register() {
   const register = (data) => {
       Axios.post("http://localhost:3001/register", data).then((response) => {
         setMessage(response.data.message);
-        setRegisterDone(response.data.registerDone)
-        console.log(registerDone)
+        setRegisterDone(response.data.registerDone);
       });
   };  
 
@@ -66,7 +65,7 @@ export default function Register() {
                   type="password"
                 />
                 <h4 className="message">{message}</h4>
-                <button type="submit" disabled={!(Formik.isValid && !(registerDone))}>Register</button>
+                <button type="submit" className="formik_field" disabled={!(Formik.isValid && !(registerDone))}>Register</button>
               </Form>
             )
           }  
@@ -75,3 +74,5 @@ export default function Register() {
     </div>
   );
 }
+
+export default Register

@@ -18,12 +18,11 @@ module.exports = (sequelize,DataTypes) => {
         }
     });
 
-    // users.associate = (models) => {
-    //     users.hasMany(models.harEntries,{
-    //         onDelete: "cascade",
-    //     });
-    // };
+    users.associate = (models) => {
+        users.hasMany(models.entries,{
+            onDelete: "cascade",
+        });
+    };
 
     return users;
-
 }

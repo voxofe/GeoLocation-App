@@ -1,11 +1,14 @@
-passwords: web2021AK$
+passwords: web2021$AK
 
 matches(/(?=.*?[^[α-ωΑ-Ω]])/,"Email addresses should only contain Latin characters")
 
 
-secret: Gh5HQXhGBWs24fpAIRmAbn0TELM4
+JWT token secret: Gh5HQXhGBWs24fpAIRmAbn0TELM4
 
     <div>
       {role === "visitor" && <User />}
       {role === "admin" && <Admin />}
     </div>
+
+      <h1>{ip}</h1>
+      <h4>{harFile}</h4>
