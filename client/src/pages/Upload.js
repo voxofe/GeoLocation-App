@@ -4,12 +4,11 @@ import "../App.css";
 import {Formik, Form, ErrorMessage} from 'formik'
 import filterOut from '../scripts/transform'
 
-function Upload() {
+function Upload(props) {
 
   const [harFile, setHarFile] = useState();
   const [uploadChoice, setChoice] = useState("");
   const [ip, setIP] = useState("");
-  const [userID, setUserID] = useState();
 
   const getGeoLocData = async () => {
     const geolocation = await Axios.get("http://localhost:3001/upload/fetchClientIP")
@@ -18,13 +17,6 @@ function Upload() {
   
   useEffect( () => {
     getGeoLocData()
-    Axios.get("http://localhost:3001/login",{
-      headers:{
-        accessToken: sessionStorage.getItem("accessToken")
-      }
-    }).then((response) => {
-      setUserID(response.data.userID) 
-    });
   }, [])
 
   const filterSensitive= async (e) => {
@@ -42,7 +34,7 @@ function Upload() {
 
   const onSubmit = (e) => {
     harFile.userIP = ip;
-    harFile.userID = userID;
+    harFile.userID = props.state.userID;
     if(ip){
       Axios.post("http://localhost:3001/upload", harFile).then( (response) => {
         console.log(response);
@@ -77,7 +69,9 @@ function Upload() {
         </button>
       </div>
       <h4>{ip}</h4>
-      <h4>{userID}</h4>
+      <h4>{props.state.username}</h4>
+      <h4>{props.state.role}</h4>
+      <h4>{props.state.userID}</h4>
     </div>
   );
 }

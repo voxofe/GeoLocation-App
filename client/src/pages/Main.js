@@ -1,32 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 import User from "../components/User";
 import Admin from "../components/Admin";
 
-export default function Main() {
-  const [role, setRole] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState("");
-
-  // Axios.defaults.withCredentials = true;
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login",{
-      headers:{
-        accessToken: sessionStorage.getItem("accessToken")
-      }
-    }).then((response) => {
-      if (response.data.loggedIn) {
-        setLoggedInUser(response.data.username);
-        setRole(response.data.role);  
-      }
-    });
-  }, []);
+export default function Main(props) {
 
   return (
     <div>
       <h2>Welcome to the Main Page!!</h2>
-      <h3>Username: {loggedInUser}</h3>
-      <h3>Role: {role}</h3>
+      <h3>Username: {props.state.username}</h3>
+      <h3>Role: {props.state.role}</h3>
+      <h3>UserID: {props.state.userID}</h3>
+      <h3>LoggedIn: {props.state.loggedInStatus ? "YES" : "NO"}</h3>
     </div>
   );
 }

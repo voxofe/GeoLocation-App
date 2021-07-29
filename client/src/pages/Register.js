@@ -19,7 +19,7 @@ function Register() {
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
     password: Yup.string().min(8, "Password must be at least 8 characters").matches(/(?=.*?[A-ZΑ-Ω])(?=.*?[0-9])(?=.*?[#$*&@])/, "Password must contain at least 1 capital letter, 1 digit and one special character (#$*&@)").required("Required"),
-    email: Yup.string().email('Invalid email').required("Required")
+    email: Yup.string().email("Invalid email").required("Required")
   });
 
   const register = (data) => {

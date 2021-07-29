@@ -1,32 +1,3 @@
-/*To host field yparxei pouthena??*/
-
-
-//File System module
-// const fs = require('fs');
-
-
-//Import the original HAR/JSON file
-// var rawdata = fs.readFileSync('./hars/fb1.har');
-
-
-
-//Placeholder for the new filtered JSON object
-// var filteredHarObj = {
-//     "entries":[]//The array of entry objects (records)
-// }
-
-/* Here is where the code runs*/
-
-//Transform the original JSON object
-//filterOut(harObj);
-
-
-//Export the new filtered JSON file
-// var  newJSON = JSON.stringify(filteredHarObj, null,'\t');
-// fs.writeFileSync('filteredData.json', newJSON);
-
-/*Here is where the code ends*/
-
 //Remove the unwanted + sensitive data and build the new filteredHarObj
 function filterOut(oldObj){
     var filteredHarObj = {

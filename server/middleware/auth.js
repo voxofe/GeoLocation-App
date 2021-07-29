@@ -3,7 +3,7 @@ const {verify} = require('jsonwebtoken')
 const validateToken = (req,res,next) => {
     const accessToken = req.header("accessToken");
     if (!accessToken){
-        res.json({loggedIn: false})
+        res.json({loggedInStatus: false})
     }
     try{
         const validToken = verify(accessToken,"Gh5HQXhGBWs24fpAIRmAbn0TELM4");

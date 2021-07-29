@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import axios from "axios";
 import "../App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {useHistory} from 'react-router-dom'
 
-function Login() {
+function Login(props) {
 
   const [message, setMessage] = useState("");
-  const [loggedIn=false, setLoggedIn] = useState("");
   let history = useHistory();
-
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login",{
-      headers:{
-        accessToken: sessionStorage.getItem("accessToken")
-      }
-    }).then((response) => {
-      setLoggedIn(response.data.loggedIn);  
-    });
-  }, []);
 
   const initialValues = {
     email: "",
@@ -27,21 +16,27 @@ function Login() {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
+    email: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   });
 
   const login = (data) => {
-    Axios.post("http://localhost:3001/login", data).then((response) => {
+    axios.post("http://localhost:3001/login", data).then((response) => {
       setMessage(response.data.message);
       if(response.data.token){
         sessionStorage.setItem("accessToken",response.data.token)
+        props.setStatus({
+          username : response.data.username,
+          role : response.data.role,
+          userID : response.data.userID,
+          loggedInStatus : response.data.loggedInStatus
+        })
         history.push('/');
       }
     });
   };
 
-  if(!loggedIn){
+  if(!props.state.loggedInStatus){
     return (
       <div className="App">
         <Formik 
@@ -81,77 +76,3 @@ function Login() {
 }
 
 export default Login
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import Axios from "axios";
-// import "../App.css";
-
-
-// export default function Login() {
-//     const [username, setUsername] = useState("");
-//     const [password, setPassword] = useState("");
-  
-//     const [loginStatus, setLoginStatus] = useState("");
-  
-//     Axios.defaults.withCredentials = true;
-  
-    
-  
-//     const login = () => {
-//       Axios.post("http://localhost:3001/login", {
-//         username: username,
-//         password: password,
-//       }).then((response) => {
-//         if (response.data.message) {
-//           setLoginStatus(response.data.message);
-//         } else {
-//           setLoginStatus(response.data[0].username);
-//         }
-//       });
-//     };
-  
-
-
-
-//     return (
-//         <div className="App">
-//           <div className="login">
-//             <h1>Login</h1>
-//             <input
-//               type="text"
-//               placeholder="Username..."
-//               onChange={(e) => {
-//                 setUsername(e.target.value);
-//               }}
-//             />
-//             <input
-//               type="password"
-//               placeholder="Password..."
-//               onChange={(e) => {
-//                 setPassword(e.target.value);
-//               }}
-//             />
-//             <button onClick={login}> Login </button>
-//           </div>
-    
-//           <h1>{loginStatus}</h1>
-//         </div>
-//       );
-//     }
