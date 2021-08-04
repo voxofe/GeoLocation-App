@@ -3,9 +3,9 @@ const router = express.Router();
 const { users } = require("../models");
 const bcrypt = require('bcryptjs');
 
-router.get("/", async (req,res)=>{
-  //Stuff maybe
-});
+// router.get("/", async (req,res)=>{
+//   //Stuff maybe
+// });
 
 router.post("/", async (req,res)=>{
 

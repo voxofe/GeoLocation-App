@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
-import User from "../components/User";
-import Admin from "../components/Admin";
 
 export default function Main(props) {
 

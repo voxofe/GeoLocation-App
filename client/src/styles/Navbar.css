@@ -6,17 +6,18 @@
     flex-direction: row;
   }
   
-  /* .navbar .leftSide {
+  .navbar .leftSide {
     flex: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    padding-left: 50px;
+    padding-left: 1px;
+    justify-content: left;
   }
   
   .navbar .leftSide img {
     width: 70px;
-  } */
+  }
   
   .navbar .rightSide {
     float: right;
@@ -24,7 +25,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: right;
   }
   
   .navbar .loggedInContainer {
@@ -118,5 +119,3 @@
       display: none;
     }
   }
-
-

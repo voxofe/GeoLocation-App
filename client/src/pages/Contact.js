@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Multiple from "../assests/3959331.jpg";
 import "../styles/ContactUs.css";
 

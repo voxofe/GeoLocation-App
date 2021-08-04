@@ -5,36 +5,27 @@ const bcrypt = require('bcryptjs');
 const {sign} = require('jsonwebtoken')
 const { validateToken } = require('../middleware/auth')
 
-router.get("/auth", validateToken, async (req, res) => {
-  // res.json({
-  //    loggedInStatus: true,
-  //    username: req.user.username,
-  //    role: req.user.role, 
-  //    userID: req.user.id
-  // }); 
-});
-
-
 router.put("/", validateToken, async (req, res) => {
   
-    let { newUsername, oldPassword, newPassword } = req.body;
-    let user = await users.findOne({ where: { username: req.user.username } });
+  let { newUsername, oldPassword, newPassword } = req.body;
+  let user = await users.findOne({ where: { username: req.user.username } });
 
-    if(newUsername !== "") {
-      user.update(
-          { username: newUsername },
-          { where: { username: req.user.username } }
-        );
-        const accessToken = sign({ username : newUsername, id : user.id, role: user.role},"Gh5HQXhGBWs24fpAIRmAbn0TELM4");
-        res.json({
-          username: user.username, 
-          role: user.role, 
-          userID: user.id, 
-          loggedInStatus: true, 
-          token: accessToken
-        });
-      }
-    //   console.log("hey")
+  if(newUsername !== "") {
+    user.update(
+        { username: newUsername },
+        { where: { username: req.user.username } }
+      );
+      const accessToken = sign({ username : newUsername, id : user.id, role: user.role},"Gh5HQXhGBWs24fpAIRmAbn0TELM4");
+      res.json({
+        username: user.username, 
+        role: user.role, 
+        userID: user.id, 
+        loggedInStatus: true, 
+        token: accessToken
+      });
+    }
+
+  if(newPassword && oldPassword) {   
     bcrypt.compare(oldPassword, user.password).then(async (match) => {
       if(!match)  {
         res.json({ error: "Wrong Password Entered!" });
@@ -54,7 +45,8 @@ router.put("/", validateToken, async (req, res) => {
         });
       }
     });
-
-  });
+    console.log("trying to change password")
+  }
+});
   
-  module.exports = router;
+module.exports = router;

@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
-import Axios from "axios";
+import axios from "axios";
 import "../App.css";
-import {Formik, Form, ErrorMessage} from 'formik'
+//import {Formik, Form, ErrorMessage} from 'formik'
 import filterOut from '../scripts/transform'
 
 function Upload(props) {
@@ -11,7 +11,7 @@ function Upload(props) {
   const [ip, setIP] = useState("");
 
   const getGeoLocData = async () => {
-    const geolocation = await Axios.get("http://localhost:3001/upload/fetchClientIP")
+    const geolocation = await axios.get('https://geolocation-db.com/json/')
     setIP(geolocation.data.IPv4)
   }
   
@@ -28,17 +28,23 @@ function Upload(props) {
     };
   }
 
-  const readRadio = () => {
-
+  const readRadio = (e) => {
+    setChoice(e.target.value)
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     harFile.userIP = ip;
     harFile.userID = props.state.userID;
-    if(ip){
-      Axios.post("http://localhost:3001/upload", harFile).then( (response) => {
+    if(uploadChoice==="server"){
+      axios.post("http://localhost:3001/upload", harFile).then( (response) => {
         console.log(response);
       });
+    }else if(uploadChoice==="local"){
+      const harText = JSON.stringify(harFile)
+      localStorage.setItem("harFile", harText)
+      console.log(harFile)
+    }else{
+      alert("You must choose an upload option!");
     }
   };
 
@@ -55,6 +61,8 @@ function Upload(props) {
           <label  className="caption">Save Locally</label>
           <input 
             type="radio"
+            value="local"
+            name="uploadChoice"
             onChange={readRadio}
             />
         </div>
@@ -62,6 +70,8 @@ function Upload(props) {
           <label className="caption">Upload to Server</label>
           <input 
             type="radio"
+            value="server"
+            name="uploadChoice"
             onChange={readRadio}
           />
         </div>

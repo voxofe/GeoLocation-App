@@ -47,7 +47,7 @@ function returnValueOf(searchForThisName,indexOfEntry,oldObj){
     var indexOfFoundValue;
     var thisNameExists = false;
     for(var j=0; j < headersArray.length; j++){
-        if(headersArray[j].name == searchForThisName){
+        if(headersArray[j].name === searchForThisName){
             indexOfFoundValue = j;
             thisNameExists = true;
         }

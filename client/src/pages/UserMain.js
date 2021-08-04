@@ -1,15 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React  from "react";
 import {Link} from "react-router-dom";
 import "../App.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import {useParams, useHistory} from 'react-router-dom'
-//import { AuthContext } from "../helpers/AuthContext";
-// import "../styles/UserMain.css";
 
 function usermain(props){
-    //const { authState } = useContext(AuthContext);
-    let history = useHistory();
     
     return(
         <div className ="usermain" >

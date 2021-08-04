@@ -3,13 +3,15 @@ import Axios from "axios";
 import "../App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 function Register() {
 
   const [message, setMessage] = useState("");
   const [registerDone, setRegisterDone] = useState("");
   
+  let history = useHistory();
+
   const initialValues = {
     username: "",
     password: "",
@@ -27,6 +29,7 @@ function Register() {
       Axios.post("http://localhost:3001/register", data).then((response) => {
         setMessage(response.data.message);
         setRegisterDone(response.data.registerDone);
+        history.push('/login')
       });
   };  
 
