@@ -14,7 +14,7 @@ app.use("/login",loginRouter);
 const uploadRouter = require('./routes/upload');
 app.use("/upload",uploadRouter);
 const editProfileRouter = require('./routes/editprofile')
-app.use("/editprofile",editProfileRouter)
+app.use("editprofile",editProfileRouter)
 
 const db = require('./models');
 

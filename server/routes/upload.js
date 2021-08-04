@@ -21,7 +21,7 @@ router.post("/", async (req,res)=>{
   
   var results = await whois(req.body.userIP);
   var isp = results.descr
-
+  console.log(results);
   for(let i=0; i<req.body.entries.length; i++){
     entries.create({
       startedDateTime: req.body.entries[i].startedDateTime,

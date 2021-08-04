@@ -47,13 +47,13 @@ function Login(props) {
           {Formik => {
             return(
               <Form className="login">
-                <label>Email</label>
+                <label className="caption">Email</label>
                 <ErrorMessage className="validationWarning" name="email" component="span" />
                 <Field className="formik_field"
                   name="email"
                   autoComplete="off"
                 />
-                <label>Password</label>
+                <label className="caption">Password</label>
                 <ErrorMessage className="validationWarning" name="password" component="span" />
                 <Field className="formik_field"
                   name="password"

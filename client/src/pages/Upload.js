@@ -46,25 +46,26 @@ function Upload(props) {
     <div className="App">
       <div className="upload">
         <input 
+        style={{color: "white"}}
         className="formik_field" 
         type="file" 
         onChange={filterSensitive} 
         />
         <div>
-          <label>Save Locally</label>
+          <label  className="caption">Save Locally</label>
           <input 
             type="radio"
             onChange={readRadio}
             />
         </div>
         <div>
-          <label>Upload to Server</label>
+          <label className="caption">Upload to Server</label>
           <input 
             type="radio"
             onChange={readRadio}
           />
         </div>
-        <button className="formik_field" onClick={onSubmit}>
+        <button className="formik_field" onClick={onSubmit} disabled={!ip}>
           Submit
         </button>
       </div>

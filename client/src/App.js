@@ -6,6 +6,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
+import EditProfile from "./pages/EditProfile";
 import Home from "./pages/Home";
 import AdminMain from "./pages/AdminMain";
 import UserMain from "./pages/UserMain";
@@ -57,10 +59,12 @@ function App() {
         <Route path="/login" exact render={(props) => <Login {...props} state={authState} setStatus={setAuthState}/>} />
         <Route path="/register" exact render={(props) => <Register />} />
         <Route path="/about" exact render={(props) => <About />} />
+        <Route path="/contact" exact render={(props) => <Contact />} />
         <Route path="/home" exact render={(props) => <Home />} />
-        <Route path="/admin_main" exact render={(props) => <AdminMain />} />
-        <Route path="/user_main" exact render={(props) => <UserMain />} />
+        <Route path="/adminmain" exact render={(props) => <AdminMain  {...props} state={authState}/>} />
+        <Route path="/usermain" exact render={(props) => <UserMain  {...props} state={authState}/>} />
         <Route path="/upload" exact render={(props) => <Upload {...props} state={authState}/>} />
+        <Route path="/editprofile" exact render={(props) => <EditProfile {...props} state={authState} setStatus={setAuthState}/>} />
       </Switch>
       <Footer />
     </Router>

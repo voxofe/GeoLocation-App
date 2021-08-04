@@ -17,40 +17,31 @@ function Navbar(props) {
   return (
     <div className="navbar">
         {/* <AuthContext.Provider value={{ authState, setAuthState }}> */}
-        {/* <div className="leftSide" id={openLinks ? "open" : "close"}>
-            <img src={Logo} alt="this is our logo" />
-            <div className="hiddenLinks">
-                <Link to="/"> Home </Link>
-                <Link to="/menu"> Menu </Link>
-                <Link to="/about"> About </Link>
-                <Link to="/contact"> Contact </Link>
-                {!props.state.loggedInStatus  && (
-                <div className="login">  
-                    <Link to="/login"> Login</Link>
-                </div> 
-                )}
-                <div className="loggedInContainer">
-                    <h1>{props.state.username} </h1>
-                    {props.state.loggedInStatus  && 
-                    (<div className = "logout">
-                        <Link to="/logout"> Logout</Link>
-                    </div>)}
-                </div>
-            </div>
-        </div> */}
         <div className="rightSide">
             <Link to="/"> Home </Link>
-            <Link to="/menu"> Menu </Link>
+            {/* <Link to="/menu"> Menu </Link> */}
             <Link to="/about"> About </Link>
             <Link to="/contact"> Contact </Link>
+
             {props.state.loggedInStatus 
             ?   <div>  
+                {props.state.role=="admin"
+                ?<div>
+                    <Link to="/adminmain">Profile</Link>
                     <Link to="/" onClick={props.logOut}>Log Out</Link>
+                  </div>
+                :<div>
+                    
+                    <Link to="/usermain">Profile</Link>
+                    <Link to="/" onClick={props.logOut}>Log Out</Link>
+                </div>
+                }  
                 </div>  
             :   <div>
                     <Link to="/login"> Log In</Link>
                 </div> 
             }
+            <Link to="/register">Register </Link>
             <button onClick={toggleNavbar}>
                 <ReorderIcon />
             </button>

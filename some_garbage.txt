@@ -15,3 +15,13 @@ JWT token secret: Gh5HQXhGBWs24fpAIRmAbn0TELM4
 
       <h1>{ip}</h1>
       <h4>{harFile}</h4>
+
+
+{
+    "oldUsername": "LabRat",
+    "newUsername": "voxofe",
+    "oldPassword": "",
+    "newPassword": ""
+}
+
+req.user.username

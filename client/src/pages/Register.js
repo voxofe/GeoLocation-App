@@ -3,6 +3,7 @@ import Axios from "axios";
 import "../App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import {Link} from "react-router-dom";
 
 function Register() {
 
@@ -45,19 +46,19 @@ function Register() {
         {Formik => {
           return(
               <Form className="register">
-                <label>Username</label>
+                <label className="caption">Username</label>
                 <ErrorMessage className="validationWarning" name="username" component="span" />
                 <Field className="formik_field"
                   name="username"
                   autoComplete="off"
                 />
-                <label>Email</label>
+                <label className="caption">Email</label>
                 <ErrorMessage className="validationWarning" name="email" component="span" />
                 <Field className="formik_field"
                   name="email"
                   autoComplete="off"
                 />
-                <label>Password</label>
+                <label className="caption">Password</label>
                 <ErrorMessage className="validationWarning" name="password" component="span" />
                 <Field className="formik_field"
                   name="password"
@@ -66,6 +67,7 @@ function Register() {
                 />
                 <h4 className="message">{message}</h4>
                 <button type="submit" className="formik_field" disabled={!(Formik.isValid && !(registerDone))}>Register</button>
+                <Link to="/" className="caption">Home Page</Link>
               </Form>
             )
           }  
