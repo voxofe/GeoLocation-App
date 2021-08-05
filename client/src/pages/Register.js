@@ -29,7 +29,7 @@ function Register() {
       Axios.post("http://localhost:3001/register", data).then((response) => {
         setMessage(response.data.message);
         setRegisterDone(response.data.registerDone);
-        history.push('/login')
+        // history.push('/login')
       });
   };  
 
@@ -39,6 +39,10 @@ function Register() {
     });
   }, []);
 
+  const eraseMessage = ()=>{
+    setMessage("");
+  }
+  
   return (
     <div className="App">
       <Formik
@@ -54,12 +58,14 @@ function Register() {
                 <Field className="formik_field"
                   name="username"
                   autoComplete="off"
+                  onFocus={eraseMessage}
                 />
                 <label className="caption">Email</label>
                 <ErrorMessage className="validationWarning" name="email" component="span" />
                 <Field className="formik_field"
                   name="email"
                   autoComplete="off"
+                  onFocus={eraseMessage}
                 />
                 <label className="caption">Password</label>
                 <ErrorMessage className="validationWarning" name="password" component="span" />
@@ -67,6 +73,7 @@ function Register() {
                   name="password"
                   autoComplete="off"
                   type="password"
+                  onFocus={eraseMessage}
                 />
                 <h4 className="message">{message}</h4>
                 <button type="submit" className="formik_field" disabled={!(Formik.isValid && !(registerDone))}>Register</button>

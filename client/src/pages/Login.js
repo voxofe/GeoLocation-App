@@ -36,6 +36,10 @@ function Login(props) {
     });
   };
 
+  const eraseMessage = ()=>{
+    setMessage("");
+  }
+
   if(!props.state.loggedInStatus){
     return (
       <div className="App">
@@ -52,6 +56,7 @@ function Login(props) {
                 <Field className="formik_field"
                   name="email"
                   autoComplete="off"
+                  onFocus={eraseMessage}
                 />
                 <label className="caption">Password</label>
                 <ErrorMessage className="validationWarning" name="password" component="span" />
@@ -59,6 +64,7 @@ function Login(props) {
                   name="password"
                   autoComplete="off"
                   type="password"
+                  onFocus={eraseMessage}
                 />
                 <h4 className="message">{message}</h4>
                 <button type="submit" className="formik_field">Log In</button>

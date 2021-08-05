@@ -1,7 +1,7 @@
-var request = require('request')
-var url = "http://ipwhois.app/json/"
+const request = require('request')
+const url = "http://ipwhois.app/json/"
 
-var userGeoLoc = async (req,res,next)=>{
+const userGeoLoc = async (req,res,next)=>{
 
     const fullUrl = url.concat(req.body.userIP);
 
@@ -11,6 +11,7 @@ var userGeoLoc = async (req,res,next)=>{
     }, function (error, response, body) {
     
         if (!error && response.statusCode === 200) {
+
             req.isp = body.isp
             req.userLatitude = body.latitude
             req.userLongitude = body.longitude
