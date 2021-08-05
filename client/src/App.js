@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import "./App.css";
-import Main from "./pages/Main";
+//import Main from "./pages/Main";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Upload from "./pages/Upload";
@@ -55,7 +55,7 @@ function App() {
     <Router>
       <Navbar state={authState} logOut={logout}/>
       <Switch>
-        <Route path="/" exact render={(props=authState) => <Main {...props} state={authState}/>} />
+        <Route path="/" exact render={(props=authState) => <Home {...props} state={authState}/>} />
         <Route path="/login" exact render={(props) => <Login {...props} state={authState} setStatus={setAuthState}/>} />
         <Route path="/register" exact render={(props) => <Register />} />
         <Route path="/about" exact render={(props) => <About />} />

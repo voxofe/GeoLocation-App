@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import axios from "axios";
 import "../App.css";
-//import {Formik, Form, ErrorMessage} from 'formik'
 import filterOut from '../scripts/transform'
 
 function Upload(props) {
@@ -9,6 +8,8 @@ function Upload(props) {
   const [harFile, setHarFile] = useState();
   const [uploadChoice, setChoice] = useState("");
   const [ip, setIP] = useState("");
+  const [harFileHasBeenFiltered, setHarFileHasBeenFiltered] = useState(false);
+  const [message, setMessage] = useState("");
 
   const getGeoLocData = async () => {
     const geolocation = await axios.get('https://geolocation-db.com/json/')
@@ -20,11 +21,13 @@ function Upload(props) {
   }, [])
 
   const filterSensitive= async (e) => {
+    setMessage("");
     const fileReader = new FileReader();
     fileReader.readAsText(e.target.files[0]);
     fileReader.onload = (e) => {
       let filteredJSON = filterOut(JSON.parse(e.target.result));
       setHarFile(filteredJSON);
+      setHarFileHasBeenFiltered(true);
     };
   }
 
@@ -37,12 +40,12 @@ function Upload(props) {
     harFile.userID = props.state.userID;
     if(uploadChoice==="server"){
       axios.post("http://localhost:3001/upload", harFile).then( (response) => {
-        console.log(response);
+        setMessage(response.data.message)
       });
     }else if(uploadChoice==="local"){
       const harText = JSON.stringify(harFile)
       localStorage.setItem("harFile", harText)
-      console.log(harFile)
+      setMessage("Saved locally!")
     }else{
       alert("You must choose an upload option!");
     }
@@ -75,14 +78,11 @@ function Upload(props) {
             onChange={readRadio}
           />
         </div>
-        <button className="formik_field" onClick={onSubmit} disabled={!ip}>
+        <h4 className="caption">{message}</h4>
+        <button className="formik_field" onClick={onSubmit} disabled={!(ip && harFileHasBeenFiltered)}>
           Submit
         </button>
       </div>
-      <h4>{ip}</h4>
-      <h4>{props.state.username}</h4>
-      <h4>{props.state.role}</h4>
-      <h4>{props.state.userID}</h4>
     </div>
   );
 }

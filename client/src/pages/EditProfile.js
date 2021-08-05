@@ -100,7 +100,6 @@ function EditProfile(props) {
         changePassword: !(checkboxState.changePassword)
       })
     }
-    //console.log("inside toggleCheckBox")
   }
 
   return (
@@ -149,41 +148,9 @@ function EditProfile(props) {
             )
           }  
         }
-      </Formik>  
-      <h2>{checkboxState.changeUsername ? "Change Username is ON" : "Change Username is OFF"}</h2>
-      <h2>{checkboxState.changePassword ? "Change Password is ON" : "Change Password is OFF"}</h2>     
+      </Formik>     
     </div>
   );
 }   
-  //   <div>
-  //     <h1>Change Your Username</h1>
-  //     <input
-  //       type="text"
-  //       placeholder="New Username..."
-  //       onChange={(event) => {
-  //         setNewUsername(event.target.value);
-  //       }}
-  //     />
-  //     <button onClick={changeInfo}> Save Changes</button> 
-
-  //     <h1>Change Your Password</h1>
-  //     <input
-  //       type="password"
-  //       placeholder="Old Password..."
-  //       onChange={(event) => {
-  //         setOldPassword(event.target.value);
-  //       }}
-  //     />
-  //     <input
-  //       type="password"
-  //       placeholder="New Password..."
-  //       onChange={(event) => {
-  //         setNewPassword(event.target.value);
-  //       }}
-  //     />
-  //     <button onClick={changeInfo}> Save Changes</button>
-  //   </div>
-  // );
-
 
 export default EditProfile;

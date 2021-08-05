@@ -1,6 +1,5 @@
 import React from "react";
-//import MultiplePizzas from "../assets/multiplePizzas.jpeg";
-import MultiplePizzas from "../assests/3959331.jpg";//Nai den yphrxe multiplepizzas opote ekana allh eikona multiplepizzas
+import MultiplePizzas from "../assests/3959331.jpg";
 import "../styles/About.css";
 function About() {
   return (

@@ -1,6 +1,18 @@
 module.exports = (sequelize,DataTypes) => {
     const entries = sequelize.define("entries",{
-        startedDateTime: {
+        userIPAddress: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userLatitude:{
+            type: DataTypes.STRING,
+            allowNUll: false
+        },
+        userLongitude:{
+            type: DataTypes.STRING,
+            allowNUll: false
+        },    
+        isp: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -8,8 +20,20 @@ module.exports = (sequelize,DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        serverLatitude:{
+            type: DataTypes.STRING,
+            allowNUll: true
+        },
+        serverLongitude:{
+            type: DataTypes.STRING,
+            allowNUll: true
+        },
         wait: {
             type: DataTypes.DOUBLE,
+            allowNull: false
+        },
+        startedDateTime: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         method: {
@@ -56,10 +80,7 @@ module.exports = (sequelize,DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
-        isp: {
-            type: DataTypes.STRING,
-            allowNull: true
-        }
+
     });
 
     return entries;

@@ -14,10 +14,10 @@ function Navbar(props) {
             ?   <div>  
                   {props.state.role==="admin"
                   ?<div>
-                      <Link to="/adminmain">Profile</Link>
+                      <Link to="/adminmain">My Profile{}</Link>
                     </div>
                   :<div>  
-                      <Link to="/usermain">Profile</Link>
+                      <Link to="/usermain">My Profile{}</Link>
                   </div>
                   }  
                 </div>  
