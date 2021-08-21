@@ -23,7 +23,23 @@
     margin-top: 50px;
   }
   
-  .aboutBottom p {
+  .aboutBottom table{
+    border-collapse: collapse;
+  }
+
+  .aboutBottom  td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  .aboutBottom th, td  {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  /* .aboutBottom p {
     width: 1200px;
     
   }
@@ -36,6 +52,6 @@
     display: flex;
     justify-content: center;
     transform: translateY(-40px);
-  }
+  } */
 
 

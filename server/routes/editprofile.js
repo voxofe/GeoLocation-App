@@ -4,6 +4,7 @@ const { users } = require("../models");
 const bcrypt = require('bcryptjs');
 const {sign} = require('jsonwebtoken')
 const { validateToken } = require('../middleware/auth')
+const { entries } = require("../models");
 
 router.put("/", validateToken, async (req, res) => {
   
@@ -48,5 +49,12 @@ router.put("/", validateToken, async (req, res) => {
     console.log("trying to change password")
   }
 });
-  
+
+router.get("/byuserId/:id", async (req, res) => {
+  const id = req.params.id;
+  const userEntries = await entries.findAll({where: {userId: id}});
+  const lastEntry = await entries.findOne({where: { userId: id }, order: [ [ 'createdAt', 'DESC' ]],});
+  res.json({numberOfEntries: userEntries.length, lastEntryDate: lastEntry.createdAt});
+});
+
 module.exports = router;

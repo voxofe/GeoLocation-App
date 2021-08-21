@@ -10,26 +10,27 @@ function Navbar(props) {
             <Link to="/"> Home </Link>
             <Link to="/about"> About </Link>
             <Link to="/contact"> Contact </Link>
-            {props.state.loggedInStatus 
-            ?   <div>  
-                  {props.state.role==="admin"
-                  ?<div>
-                      <Link to="/adminmain">My Profile{}</Link>
-                    </div>
-                  :<div>  
-                      <Link to="/usermain">My Profile{}</Link>
-                  </div>
-                  }  
-                </div>  
-            :   <div> </div> 
-            }
+
         </div>
         <div className="rightSide">
             {props.state.loggedInStatus 
-            ?   <div> 
+            ?   <div className="rightSide"> 
+                  {props.state.loggedInStatus 
+                  ?   <div>  
+                        {props.state.role==="admin"
+                        ?<div>
+                          <Link to="/adminmain">{props.state.username}</Link>
+                        </div>
+                        :<div>  
+                          <Link to="/usermain">{props.state.username}</Link>
+                        </div>
+                        }  
+                      </div>  
+                  :   <div> </div> 
+                  }
                   <Link to="/" onClick={props.logOut}>Log Out</Link> 
                 </div>  
-            :   <div>
+            :   <div className="rightSide">
                     <Link to="/register">Register </Link>
                     <Link to="/login"> Log In</Link>
                 </div> 

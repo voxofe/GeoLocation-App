@@ -1,12 +1,17 @@
 import React from "react";
+import "../styles/Home.css";
+import "../App.css";
 
 function Home(){
     return(
         <div className ="home" >
            <div className = "headerContainer">
-               <h1> ANC presents </h1>
-               <p>Crowdsourcing and Analysis of HTTP Traffic Data </p>         
-           </div>  
+               <div class="banner">
+               <p> ANC presents </p>
+               <h1> Crowdsourcing and Analysis of HTTP Traffic Data </h1>
+               </div>
+           </div>
+        
         </div>
     );
 }

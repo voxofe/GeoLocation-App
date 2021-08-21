@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import {useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {useHistory, Link} from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios'
 import * as Yup from "yup";
 import "../App.css";
+import "../styles/Usermain.css";
+import "../styles/Adminmain.css";
 
 function EditProfile(props) {
 
@@ -13,6 +15,17 @@ function EditProfile(props) {
     changeUsername: false,
     changePassword: false
   })
+
+  const [totalEntries, setTotalEntries] = useState()
+  const [lastUploadDate, setLastUploadDate] = useState()
+
+  useEffect( () => {
+    axios.get(`http://localhost:3001/editprofile/byuserId/${props.state.userID}`).then((response)=>{
+      // console.log(response.data)
+      setTotalEntries(response.data.numberOfEntries)
+      setLastUploadDate(response.data.lastEntryDate)
+    })
+  }, [])
 
   const initialValues = {
     changeUsernameCheckbox : checkboxState.changeUsername,
@@ -103,7 +116,22 @@ function EditProfile(props) {
   }
 
   return (
-    <div className="App">
+    <div className ="usermain" >
+    <h1>For some (CSS) reason this is not rendered and what's underneath is.</h1> 
+    <h2> Welcome Back, {props.state.username} </h2> 
+    <div className="col-md-12 text-center">
+        <div className="btn-group" role="group" aria-label="Welcome Back, {props.state.username}">
+              <Link to="/editprofile">
+                  <button type="button" className="btn btn-secondary">Edit Profile</button>
+              </Link>
+              <Link to="/upload">
+                 <button type="button" className="btn btn-secondary">Upload Data</button>
+              </Link>
+              <Link to="/usermap">
+              <button type="button" className="btn btn-secondary">Visualize Data</button>
+              </Link>
+              </div>
+              </div>
       <Formik
         initialValues={initialValues}
         onSubmit={changeInfo}
@@ -148,8 +176,27 @@ function EditProfile(props) {
             )
           }  
         }
-      </Formik>     
-    </div>
+      </Formik>  
+      <p className="container">   
+            <h3 className="caption"> _Upload Information_
+            <table className="uploads">
+                <thead>
+                    <tr>
+                        <th scope='col'>Total Entries</th>
+                        <th scope='col'>Last Entry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>{totalEntries}</td>
+                      <td>{lastUploadDate}</td>
+                  </tr>
+                </tbody>
+            </table>
+            </h3>
+            </p> 
+            {/* </div> */}
+    </div>   
   );
 }   
 

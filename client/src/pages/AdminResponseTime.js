@@ -3,13 +3,14 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios'
 import "../App.css";
 import {useParams, useHistory} from 'react-router-dom'
+import AdminChart from "../components/AdminChart.js";
 import "../styles/Adminmain.css";
 
-function adminmain(props){
+function adminresponse(props){
     return(
         <div className ="adminmain" >
-            <h1>For some (CSS) reason this is not rendered and what's underneath is.</h1> 
-            <h2> Welcome Back Admin, {props.state.username} </h2>
+            
+            <h1> Welcome Back Admin, {props.state.username} </h1>
              <div className="col-md-12 text-center">
              <div className="btn-group" role="group" aria-label="Welcome Back Admin, {props.state.username}">
                 <Link to="/admininfo">
@@ -25,6 +26,7 @@ function adminmain(props){
                 <button type="button" className="btn btn-secondary">Vizualize Data</button>
                 </Link>
                 </div>
+                <AdminChart/>
             
            </div> 
         </div>
@@ -33,4 +35,4 @@ function adminmain(props){
                
 
 
-export default adminmain;
+export default adminresponse;

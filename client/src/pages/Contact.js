@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Multiple from "../assests/3959331.jpg";
 import "../styles/ContactUs.css";
 
 function Contact() {
     return(
-    <div className="about">
+    <div className="contact">
         <div
-          className="aboutTop"
+          className="contactTop"
           style={{ backgroundImage: `url(${Multiple})` }}
         ></div>
-        <div className="aboutBottom">
-        <h1> Student Information</h1>
+        <div className="contactBottom">
+          <h1> Student Information</h1>
           <table>
             <thead>
               <tr>
@@ -37,6 +37,18 @@ function Contact() {
               </tr>
             </tbody>
           </table>
+          
+          
+          
+          {/* <p>
+            Name: Andreas Kostas AM: 230000 Email: 230000@upnet.gr
+          </p>
+          <p>  
+            Name: Nikolaos Nikolaou AM: 230000 Email: 230000@upnet.gr
+          </p>
+          <p>  
+            Name: Christina Sialma AM: 235962 Email: 235962@upnet.gr
+          </p> */}
       </div>
       </div>
         
