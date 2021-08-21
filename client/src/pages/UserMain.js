@@ -8,7 +8,7 @@ function usermain(props){
     return(
         <div>
             <h1>For some (CSS) reason this is not rendered and what's underneath is.</h1> 
-            <h2> Welcome Back, {props.state.username} </h2>
+            {/* <h5> Welcome Back, {props.state.username} </h5> */}
             <div className="col-md-12 text-center">           
             <div className="btn-group" role="group" aria-label="Welcome Back, {props.state.username}">
                 <Link to="/editprofile">

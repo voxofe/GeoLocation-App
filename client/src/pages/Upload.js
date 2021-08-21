@@ -4,6 +4,7 @@ import axios from "axios";
 import "../App.css";
 import "../styles/Adminmain.css";
 import filterOut from '../scripts/transform'
+import { Dot } from 'react-animated-dots';
 
 function Upload(props) {
 
@@ -12,6 +13,7 @@ function Upload(props) {
   const [ip, setIP] = useState("");
   const [harFileHasBeenFiltered, setHarFileHasBeenFiltered] = useState(false);
   const [message, setMessage] = useState("");
+  const [submitClicked, setSubmitClicked] = useState(false)
 
   const getGeoLocData = async () => {
     const geolocation = await axios.get('https://geolocation-db.com/json/')
@@ -24,6 +26,7 @@ function Upload(props) {
 
   const filterSensitive= async (e) => {
     setMessage("");
+    setSubmitClicked(false);
     const fileReader = new FileReader();
     fileReader.readAsText(e.target.files[0]);
     fileReader.onload = (e) => {
@@ -38,11 +41,12 @@ function Upload(props) {
   }
 
   const onSubmit = () => {
+    setSubmitClicked(true);
     harFile.userIP = ip;
     harFile.userID = props.state.userID;
     if(uploadChoice==="server"){
       axios.post("http://localhost:3001/upload", harFile).then( (response) => {
-        setMessage(response.data.message)
+        setMessage(response.data.message);
       });
     }else if(uploadChoice==="local"){
       const harText = JSON.stringify(harFile)
@@ -56,7 +60,7 @@ function Upload(props) {
   return (
     <div className ="usermain" >
     <h1>For some (CSS) reason this is not rendered and what's underneath is.</h1>
-    <h2> Welcome Back, {props.state.username} </h2> 
+    {/* <h5> Welcome Back, {props.state.username} </h5>  */}
      <div className="col-md-12 text-center">
      <div className="btn-group" role="group" aria-label="Welcome Back, {props.state.username}">
         <Link to="/editprofile">
@@ -96,8 +100,12 @@ function Upload(props) {
             onChange={readRadio}
           />
         </div>
-        <h4 className="caption">{message}</h4>
-        <button className="formik_field" onClick={onSubmit} disabled={!(ip && harFileHasBeenFiltered)}>
+        {!message && submitClicked
+        ? <h1 className="caption"><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot></h1>
+        : <h4 className="caption">{message}</h4>
+        }
+
+        <button className="formik_field" onClick={onSubmit} disabled={!(ip && harFileHasBeenFiltered) || submitClicked}>
           Submit
         </button>
 
