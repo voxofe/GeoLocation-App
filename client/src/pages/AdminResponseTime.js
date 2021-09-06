@@ -6,7 +6,52 @@ import {useParams, useHistory} from 'react-router-dom'
 import AdminChart from "../components/AdminChart.js";
 import "../styles/Adminmain.css";
 
-function adminresponse(props){
+const adminresponse=(props)=>{
+    // let history = useHistory();
+    // const [waitData, setContentWait] = useState([]);
+    
+    // useEffect( ()=>{
+    //     axios.get('http://localhost:3001/adminchart/').then((response)=>{
+        
+    //     setContentWait(response.waitData)
+    //     }
+    //     )
+    // },[])
+
+    // const renderTable = () =>{
+    //     return waitData.map( info =>{
+    //         return(
+    //             <tr>
+    //                 <td>{info.wait}</td>
+    //             </tr>
+    //         )
+    //     })
+    // }
+      const [Data, setData]= useState({
+          waits:'',
+          types:''
+      })
+
+      useEffect(()=>{
+          axios.get('http://localhost:3001/adminchart/')
+          .then(response=>{
+              let contentData = response.data;
+              setData({wait: contentData.wait, content: contentData.content_type})
+              console.log(response)
+              console.log('wait:', response.data.wait)
+          })
+          .catch(err=>{
+              console.log(err);
+          })
+
+      },[])
+      
+    
+
+
+    
+    
+
     return(
         <div className ="adminmain" >
             
@@ -26,8 +71,10 @@ function adminresponse(props){
                 <button type="button" className="btn btn-secondary">Vizualize Data</button>
                 </Link>
                 </div>
+                <h1>{Data.wait}</h1>
                 <AdminChart/>
-            
+                
+                
            </div> 
         </div>
     );

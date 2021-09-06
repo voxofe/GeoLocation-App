@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios'
 import * as Yup from "yup";
 import "../App.css";
-import "../styles/Usermain.css";
+import "../styles/UserMain.css";
 import "../styles/Adminmain.css";
 
 function EditProfile(props) {

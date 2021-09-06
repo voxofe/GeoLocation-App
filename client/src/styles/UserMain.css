@@ -1,18 +1,19 @@
 p.container {
     border: 2px solid rgb(33, 18, 32);
     height: 150px;
-    width: 180px;
+    width: 300px;
     background-color: rgb(33, 19, 32);
     position: absolute;
-    top: 200.5px;
-    left: 70px;
-    width: 300px;
+    top: 203.5px;
+    left: 4;
+    
     
   }
 
 p.h3{
      background-color: rgb(85, 63, 105);
      color: rgb(235, 233, 233);
+     
  } 
 
 

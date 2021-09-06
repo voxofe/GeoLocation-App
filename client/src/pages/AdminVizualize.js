@@ -5,10 +5,23 @@ import "../App.css";
 import {useParams, useHistory} from 'react-router-dom'
 import "../styles/Adminmain.css";
 
+import MapChart from "../components/AdminMap.js"
+
 function adminvizualize(props){
+    const [locationInfo, setlocationInfo] = useState([])
+
+    useEffect( () => {
+        axios.get(`http://localhost:3001/adminmap/`).then((response)=>{
+            setlocationInfo(response.data)
+            // console.log(response.data)
+        }) 
+      }, [])
+    
+    let history = useHistory();
+
     return(
         <div className ="adminmain" >
-            
+            {console.log(locationInfo)}
             <h1> Welcome Back Admin, {props.state.username} </h1>
              <div className="col-md-12 text-center">
              <div className="btn-group" role="group" aria-label="Welcome Back Admin, {props.state.username}">
@@ -25,7 +38,7 @@ function adminvizualize(props){
                 <button type="button" className="btn btn-secondary">Vizualize Data</button>
                 </Link>
                 </div>
-            
+                <MapChart {...props} lineMapData={locationInfo}/>
            </div> 
         </div>
     );

@@ -16,8 +16,15 @@ const editProfileRouter = require('./routes/editprofile')
 app.use("/editprofile",editProfileRouter)
 const userMapRouter = require('./routes/usermap')
 app.use("/usermap",userMapRouter)
+const adminInfoRouter = require('./routes/admininfo')
+app.use("/admininfo", adminInfoRouter)
+const adminMapRouter = require('./routes/adminmap')
+app.use("/adminmap", adminMapRouter)
+const adminChartRouter = require('./routes/adminchart')
+app.use("/adminchart", adminChartRouter)
 
 const db = require('./models');
+const { response } = require('express');
 
 db.sequelize.sync().then(()=>{
   app.listen(3001,()=>{

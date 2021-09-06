@@ -36,5 +36,59 @@ router.get("/byuserId/:id", async (req, res)=>{
   });
   res.json(userEntries);
 })
+
+router.get("/byUniqueIsp", async(req,res)=>{
+  let isps = [];
+  var uniqueIsps = [];
+  let totalIsp = await entries.findAll();
+  var loopsDone=0;
+  var allLoopsDone = false;
+  console.log("before 1st loop")
+  for(i=0; i<totalIsp.length; i++){
     
+    isps[i]= totalIsp[i].isp;
+    loopsDone++
+    if(loopsDone===totalIsp.length){
+      allLoopsDone = true;
+    }
+  }
+  if(allLoopsDone){
+    loopDone=0;
+    allLoopsDone=false
+    console.log("before 2nd loop (1st done)")
+    // console.log(isps)
+    for (j=0; j<isps.length;i++){
+      
+      // var value = isps[j];
+      // helper[value] = "";
+      // console.log("inside 2nd for loop")
+      if(!alreadyIn({isp:isps[j],array: uniqueIsps})){
+        uniqueIsps.push(isps[i])
+      }
+      loopsDone++
+    }
+    if(loopsDone===isps.length){
+      allLoopsDone = true;
+    }
+  }
+  if(allLoopsDone){
+    // const UniqueIsp = Object.keys(helper);
+    // res.json({numberOfIsp: uniqueIsps.length});
+    console.log(uniqueIsps)
+  }
+
+})
+
+function alreadyIn(obj){
+  var found = false;
+  for(i=0; i<obj.array.length; i++){
+    if(obj.isp===obj.array[i]){
+      found = true;
+      // console.log("Found it in uniqueIsps")
+      // break;
+    }
+  }
+  return found;
+  // console.log("alreadyIn was called")
+}
 module.exports = router;

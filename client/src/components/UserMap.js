@@ -1,23 +1,24 @@
 import React from "react";
 import { useEffect} from "react";
-// import {render} from "react-dom";
+
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import 'leaflet/dist/leaflet.css';
 import arrayfy from '../scripts/heatMapArray'
-// import { addressPoints } from './randomHeatmapData.js';
+
 
 function UserMap(props){
    const position = [39.0742, 21.8243];
 
-   // console.log("UserMap component")
-   // console.log(props.heatmapData)
+  
    const addressPoints = arrayfy(props.heatmapData)
    return(
       <div>
          <Map 
             center={position}
             zoom={7}
+            minZoom={2}
+            maxZoom={12}
             style={{ height: 430, width: "100%", marginTop: 5}}
             
          >
