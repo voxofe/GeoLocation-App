@@ -36,7 +36,7 @@ router.get("/", async(req,res)=>{
   let totalFont = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
   where: {
     content_type:{
-      [Op.or]:['font/ttf','font/woff','font/woff2']
+      [Op.startsWith]:'font'
     }
   }});
   let avgFontAge = totalFont[0].dataValues.avgAge
@@ -44,7 +44,7 @@ router.get("/", async(req,res)=>{
   let totalText = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
   where: {
     content_type:{
-      [Op.or]:['text/plain','text/plain; charset=UTF-8','text/vtt; charset=UTF-8']
+      [Op.startsWith]:'text'
     }
   }});
   let avgTextAge = totalText[0].dataValues.avgAge
@@ -52,7 +52,7 @@ router.get("/", async(req,res)=>{
   let totalImage = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
   where: {
     content_type:{
-      [Op.or]:['image/gif','image/jpeg','image/png','image/svg+xml','img/webp','image/x-icon']
+      [Op.startsWith]:'image'
     }
   }});
   let avgImgAge = totalImage[0].dataValues.avgAge
@@ -68,24 +68,28 @@ router.get("/", async(req,res)=>{
   let totalHtml = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
   where: {
     content_type:{
-      [Op.or]:['text/html','text/html; charset="utf-8"','text/html; charset=UTF-8','text/html; charset=utf-8','text/html;charset=UTF-8','text/html;charset=utf-8']
+      [Op.startsWith]:'text/html'
     }
   }});
   let avgHtmlAge = totalHtml[0].dataValues.avgAge
 
+  let totalCSS = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
+  where: {
+    content_type:{
+      [Op.startsWith]:'text/css'
+    }
+  }});
+  let avgCSSAge = totalCSS[0].dataValues.avgAge
+
   let totalVideo = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
   where: {
     content_type:{
-      [Op.or]:['video/MP2T','video/mp4','video/webm','video/x-flv']
+      [Op.startsWith]:'video'
     }
   }});
   let avgVideoAge = totalVideo[0].dataValues.avgAge
 
-  let totalΧ = await entries.findAll({attributes:['content_type',[entries.sequelize.fn('AVG',entries.sequelize.col('age')), "avgAge"]], 
-  where: {
-    content_type:'application/x-mpegURL'
-  }});
-  let avgXAge = totalΧ[0].dataValues.avgAge
+
  
   res.json({numberOfIsp: UniqueIsp.length, 
     numberOfUrl: UniqueUrl.length,
@@ -108,8 +112,7 @@ router.get("/", async(req,res)=>{
     numberOfJS: avgJSAge,
     numberOfHtml: avgHtmlAge,
     numberOfVideo: avgVideoAge,
-    numberOfX: avgXAge
-
+    numberOfCSS: avgCSSAge
 
   });
 })

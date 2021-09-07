@@ -30,7 +30,7 @@ function admininfo(props){
     const [totalText, setTotalText] = useState();
     const [totalJS, setTotalJS] = useState();
     
-    const [totalX, setTotalX] = useState();
+    const [totalCSS, setTotalCSS] = useState();
     const [totalVideo, setTotalVideo] = useState();
     
     const [totalImage, setTotalImage] = useState();
@@ -68,7 +68,7 @@ function admininfo(props){
             
             setTotalText(response.data.numberOfText)
             setTotalVideo(response.data.numberOfVideo)
-            setTotalX(response.data.numberOfX)
+            setTotalCSS(response.data.numberOfCSS)
             setTotalHtml(response.data.numberOfHtml)
             
         })
@@ -214,13 +214,13 @@ function admininfo(props){
                <td>{totalHtml}</td>
             </tr> 
             <tr>
-               <th>JS App</th>
-               <td>{totalJS}</td>
+               <th>CSS</th>
+               <td>{totalCSS}</td>
             </tr>
             
             <tr>
-               <th>X-mpegURL App</th>
-               <td>{totalX}</td>
+               <th>JS App</th>
+               <td>{totalJS}</td>
             </tr>
              
 
