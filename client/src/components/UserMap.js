@@ -1,7 +1,6 @@
 import React from "react";
-import { useEffect} from "react";
 
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Map, Marker, TileLayer } from 'react-leaflet';
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import 'leaflet/dist/leaflet.css';
 import arrayfy from '../scripts/heatMapArray'

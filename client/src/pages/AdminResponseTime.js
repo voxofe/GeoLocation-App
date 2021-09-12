@@ -1,44 +1,21 @@
 import {Link} from 'react-router-dom';
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import axios from 'axios'
 import "../App.css";
-import {useParams, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import AdminChart from "../components/AdminChart.js";
 import "../styles/Adminmain.css";
 
-const adminresponse=(props)=>{
-    // let history = useHistory();
-    // const [waitData, setContentWait] = useState([]);
+function adminresponse(props){
     
-    // useEffect( ()=>{
-    //     axios.get('http://localhost:3001/adminchart/').then((response)=>{
-        
-    //     setContentWait(response.waitData)
-    //     }
-    //     )
-    // },[])
+      const [wData, setwData]= useState([])
 
-    // const renderTable = () =>{
-    //     return waitData.map( info =>{
-    //         return(
-    //             <tr>
-    //                 <td>{info.wait}</td>
-    //             </tr>
-    //         )
-    //     })
-    // }
-      const [Data, setData]= useState({
-          waits:'',
-          types:''
-      })
 
       useEffect(()=>{
           axios.get('http://localhost:3001/adminchart/')
           .then(response=>{
-              let contentData = response.data;
-              setData({wait: contentData.wait, content: contentData.content_type})
-              console.log(response)
-              console.log('wait:', response.data.wait)
+              setwData(response.data)
+              console.log(response.data)
           })
           .catch(err=>{
               console.log(err);
@@ -46,7 +23,7 @@ const adminresponse=(props)=>{
 
       },[])
       
-    
+    let history = useHistory();
 
 
     
@@ -55,7 +32,7 @@ const adminresponse=(props)=>{
     return(
         <div className ="adminmain" >
             
-            <h1> Welcome Back Admin, {props.state.username} </h1>
+            {/* <h1> Welcome Back Admin, {props.state.username} </h1> */}
              <div className="col-md-12 text-center">
              <div className="btn-group" role="group" aria-label="Welcome Back Admin, {props.state.username}">
                 <Link to="/admininfo">
@@ -71,10 +48,9 @@ const adminresponse=(props)=>{
                 <button type="button" className="btn btn-secondary">Vizualize Data</button>
                 </Link>
                 </div>
-                <h1>{Data.wait}</h1>
-                <AdminChart/>
                 
-                
+                <AdminChart {...props} waitChartData={wData}/>
+                    
            </div> 
         </div>
     );

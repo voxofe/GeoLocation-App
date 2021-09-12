@@ -1,6 +1,7 @@
 import React from "react";
-import MultiplePizzas from "../assests/3959331.jpg";
+import MultiplePizzas from "../assests/3959331.jpg";//Nai den yphrxe multiplepizzas opote ekana allh eikona multiplepizzas
 import "../styles/About.css";
+
 function About() {
   return (
     <div className="about">
@@ -10,12 +11,10 @@ function About() {
       ></div>
       <div className="aboutBottom">
         <h1> ABOUT US</h1>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-        </p>
+        <h3>
+          The presented wep application is the sole creation of the individuals named in the project report, for the purposes of the compulsory course "Web Programming & Systems", 
+          Academic Year 2020-2021, Semester 8
+        </h3>
       </div>
     </div>
   );

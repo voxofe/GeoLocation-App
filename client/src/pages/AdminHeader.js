@@ -1,15 +1,14 @@
 import {Link} from 'react-router-dom';
-import React, { useState, useEffect, useContext } from "react";
-import axios from 'axios'
+import React from "react";
 import "../App.css";
-import {useParams, useHistory} from 'react-router-dom'
 import "../styles/Adminmain.css";
+import "../styles/AdminHeader.css";
 
 function adminheader(props){
     return(
         <div className ="adminmain" >
             
-            <h1> Welcome Back Admin, {props.state.username} </h1>
+            {/* <h1> Welcome Back Admin, {props.state.username} </h1> */}
              <div className="col-md-12 text-center">
              <div className="btn-group" role="group" aria-label="Welcome Back Admin, {props.state.username}">
                 <Link to="/admininfo">
@@ -24,6 +23,9 @@ function adminheader(props){
                 <Link to="/adminvizualize">
                 <button type="button" className="btn btn-secondary">Vizualize Data</button>
                 </Link>
+                
+                <div className="badstudent">
+                </div>
                 </div>
             
            </div> 

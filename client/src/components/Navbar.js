@@ -19,7 +19,7 @@ function Navbar(props) {
                   ?   <div>  
                         {props.state.role==="admin"
                         ?<div>
-                          <Link to="/adminmain">{props.state.username}</Link>
+                          <Link to="/admininfo">{props.state.username}</Link>
                         </div>
                         :<div>  
                           <Link to="/usermain">{props.state.username}</Link>
@@ -35,9 +35,6 @@ function Navbar(props) {
                     <Link to="/login"> Log In</Link>
                 </div> 
             }
-            {/* <button onClick={toggleNavbar}>
-                <ReorderIcon />
-            </button> */}
         </div>
     </div>
   );

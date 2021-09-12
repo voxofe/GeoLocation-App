@@ -1,20 +1,22 @@
+
+ 
 p.container {
+  background-image: url("https://thumbs.dreamstime.com/b/earth-globe-one-line-drawing-world-map-vector-illustration-minimalist-design-minimalism-isolated-white-background-154200090.jpg");
     border: 2px solid rgb(33, 18, 32);
-    height: 150px;
-    width: 300px;
-    background-color: rgb(33, 19, 32);
-    position: absolute;
-    top: 203.5px;
-    left: 4;
+    height: 350px;
+    width: 1345px;
+    
+    position: center;
+    top: 100px;
+    
+
     
     
   }
 
-p.h3{
-     background-color: rgb(85, 63, 105);
-     color: rgb(235, 233, 233);
+
+p{
+    color:black;
      
- } 
+ }  
 
-
- 

@@ -4,31 +4,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from 'axios'
 import * as Yup from "yup";
 import "../App.css";
-import "../styles/UserMain.css";
+import "../styles/Usermain.css";
 import "../styles/Adminmain.css";
 
 function EditProfile(props) {
 
   let history = useHistory();
 
+  
   const [checkboxState, setCheckBox] = useState({
     changeUsername: false,
     changePassword: false
   })
-
-  const [totalEntries, setTotalEntries] = useState()
-  const [lastUploadDate, setLastUploadDate] = useState()
-
-  useEffect( () => {
-    if(1){
-      axios.get(`http://localhost:3001/editprofile/byuserId/${props.state.userID}`).then((response)=>{
-        // console.log(response.data)
-        setTotalEntries(response.data.numberOfEntries)
-        setLastUploadDate(response.data.lastEntryDate)
-      })
-    }
-  }, [])
-
+  
   const initialValues = {
     changeUsernameCheckbox : checkboxState.changeUsername,
     changePasswordCheckbox : checkboxState.changePassword,
@@ -119,7 +107,7 @@ function EditProfile(props) {
 
   return (
     <div className ="usermain" >
-    <h1>For some (CSS) reason this is not rendered and what's underneath is.</h1> 
+    {/* <h1>For some (CSS) reason this is not rendered and what's underneath is.</h1>  */}
     {/* <h5> Welcome Back, {props.state.username} </h5>  */}
     <div className="col-md-12 text-center">
         <div className="btn-group" role="group" aria-label="Welcome Back, {props.state.username}">
@@ -179,25 +167,6 @@ function EditProfile(props) {
           }  
         }
       </Formik>  
-      <p className="container">   
-            <h3 className="caption"> _Upload Information_
-            <table className="uploads">
-                <thead>
-                    <tr>
-                        <th scope='col'>Total Entries</th>
-                        <th scope='col'>Last Entry</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                      <td>{totalEntries}</td>
-                      <td>{lastUploadDate}</td>
-                  </tr>
-                </tbody>
-            </table>
-            </h3>
-            </p> 
-            {/* </div> */}
     </div>   
   );
 }   

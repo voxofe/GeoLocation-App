@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup,
   Line,
-  Marker
+  Marker,
+  useZoomPan
 } from "react-simple-maps";
 
 
@@ -17,7 +18,7 @@ const geoUrl =
 
 
 function AdminMap(props){
-  const position = [39.0742, 21.8243];
+  //const position = [39.0742, 21.8243];
   let markers = [];
   const addressPoints = arrayli(props.lineMapData)
   markers = JSON.stringify(addressPoints);
@@ -39,7 +40,7 @@ function AdminMap(props){
   const mapDataMarkers =() => {
     const array = props.lineMapData
     return array.map((entry) => {
-      let srcCoords = [entry.userLongitude, entry.userLatitude]
+      //let srcCoords = [entry.userLongitude, entry.userLatitude]
       let destCoords = [entry.serverLongitude, entry.serverLatitude]
       return <Marker coordinates={destCoords}>
         <g
@@ -50,7 +51,7 @@ function AdminMap(props){
           strokeLinejoin="round"
           transform="translate(-12, -24)"
         >
-          <circle cx="12" cy="10" r="3" />
+          <circle cx="12" cy="10" r="1" />
           <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
         </g>
         </Marker>
@@ -63,7 +64,7 @@ function AdminMap(props){
       <ComposableMap
         projectionConfig={{
           scale:250,
-          center: [39.0742, 21.8243]
+          center: [38.246639, 21.734573]
         }}>
         <ZoomableGroup zoom={1}>
         <Geographies geography={geoUrl}>

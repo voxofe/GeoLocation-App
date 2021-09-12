@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import "../App.css";
 import "../styles/Adminmain.css";
-import {useParams, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 function admininfo(props){
 
@@ -78,7 +78,7 @@ function admininfo(props){
     return(
         <div className ="adminmain" >
             <div class="scroll">
-            <h1> Welcome Back Admin, {props.state.username} </h1>
+            {/* <h1> Welcome Back Admin, {props.state.username} </h1> */}
              <div className="col-md-12 text-center">
              <div className="btn-group" role="group" aria-label="a">
                 <Link to="/admininfo">
@@ -131,7 +131,6 @@ function admininfo(props){
             <tr>
             
                    <th colSpan="2">Entries per method</th> 
-                   {/* <th>method</th> */}
             </tr>
             <tr>       
                    <th>POST</th>
@@ -153,7 +152,6 @@ function admininfo(props){
             <tr>
             
                    <th colSpan="2">Entries per status</th> 
-                   {/* <th>status</th> */}
             </tr>
             <tr>       
                    <th>0</th>
@@ -190,7 +188,6 @@ function admininfo(props){
             <table className="status" styles="float: left">
             <tr>
                 <th colSpan="2">Average age per CONTENT-TYPE</th>
-                {/* <th>TYPE</th> */}
             </tr>
             
             <tr>

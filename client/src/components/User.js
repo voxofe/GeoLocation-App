@@ -7,11 +7,3 @@ export default function NormalUser() {
     </div>
   );
 }
-/***********CSial*************/
-// import axios from "axios";
-
-// const API_URL = "http://localhost:3001/auth";
-// class NormalUser {
-  
-// }
-// export default new NormalUser();

@@ -1,4 +1,14 @@
+/* .App {
+  display:flex;
+  flex-flow:row wrap;
+  margin:0;
+  height:100vh;
+  position:sticky;
+}  */
 
+
+
+/* 
 .wrap {
   display: inline-block;
   -webkit-box-shadow: 0 0 70px #fff;
@@ -160,5 +170,4 @@ ul.primary li:hover > a{
     color: #ccc;
     background: none;
   }
-}
-
+} */

@@ -7,7 +7,7 @@ function Home(){
         <div className ="home" >
            <div className = "headerContainer">
                <div class="banner">
-               <p> ANC presents </p>
+               
                <h1> Crowdsourcing and Analysis of HTTP Traffic Data </h1>
                </div>
            </div>

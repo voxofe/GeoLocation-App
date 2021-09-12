@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import axios from 'axios'
 import "../App.css";
-import {useParams, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import "../styles/Adminmain.css";
 
 import MapChart from "../components/AdminMap.js"
@@ -13,7 +13,6 @@ function adminvizualize(props){
     useEffect( () => {
         axios.get(`http://localhost:3001/adminmap/`).then((response)=>{
             setlocationInfo(response.data)
-            // console.log(response.data)
         }) 
       }, [])
     
@@ -22,7 +21,7 @@ function adminvizualize(props){
     return(
         <div className ="adminmain" >
             {console.log(locationInfo)}
-            <h1> Welcome Back Admin, {props.state.username} </h1>
+            {/* <h1> Welcome Back Admin, {props.state.username} </h1> */}
              <div className="col-md-12 text-center">
              <div className="btn-group" role="group" aria-label="Welcome Back Admin, {props.state.username}">
                 <Link to="/admininfo">
@@ -38,8 +37,10 @@ function adminvizualize(props){
                 <button type="button" className="btn btn-secondary">Vizualize Data</button>
                 </Link>
                 </div>
-                <MapChart {...props} lineMapData={locationInfo}/>
-           </div> 
+                <div class="map">
+                  <MapChart {...props} lineMapData={locationInfo}/>
+                </div> 
+           </div>
         </div>
     );
 }

@@ -3,7 +3,7 @@ import Axios from "axios";
 import "../App.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 function Register() {
 
@@ -77,7 +77,7 @@ function Register() {
                 />
                 <h4 className="message">{message}</h4>
                 <button type="submit" className="formik_field" disabled={!(Formik.isValid && !(registerDone))}>Register</button>
-                <Link to="/" className="caption">Home Page</Link>
+                {/* <Link to="/" className="caption">Home Page</Link> */}
               </Form>
             )
           }  

@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { users} = require("../models");
 const { entries } = require("../models");
-const { validateToken } = require('../middleware/auth')
 const _ = require("underscore");
 const lodash = require("lodash");
-const {Op, sequelize} = require('sequelize')
+const {Op} = require('sequelize')
 
 router.get("/byTotalUsers/:role", async (req, res)=>{
   const totalUsers = await users.findAll({
@@ -89,8 +88,6 @@ router.get("/", async(req,res)=>{
   }});
   let avgVideoAge = totalVideo[0].dataValues.avgAge
 
-
- 
   res.json({numberOfIsp: UniqueIsp.length, 
     numberOfUrl: UniqueUrl.length,
 
@@ -116,17 +113,6 @@ router.get("/", async(req,res)=>{
 
   });
 })
-
-
-
-  
- 
-  
-  
-
-
-
-
 
     
 module.exports = router;

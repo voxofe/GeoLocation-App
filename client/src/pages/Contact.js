@@ -17,38 +17,30 @@ function Contact() {
                 <th>Name</th>
                 <th>AM</th>
                 <th>Email</th>
+                <th>Year</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Andreas Kostas</td>
-                <td>230000</td>
-                <td>230000@upnet.gr</td>
+                <td>234754</td>
+                <td>234754@upnet.gr</td>
+                <td>12</td>
               </tr>
               <tr>
                 <td>Nikolaos Nikolaou</td>
-                <td>230000</td>
-                <td>230000@upnet.gr</td>
+                <td>236151</td>
+                <td>236151@upnet.gr</td>
+                <td>7</td>
               </tr>
               <tr>
                 <td>Christina Sialma</td>
                 <td>235962</td>
                 <td>235962@upnet.gr</td>
+                <td>8</td>
               </tr>
             </tbody>
           </table>
-          
-          
-          
-          {/* <p>
-            Name: Andreas Kostas AM: 230000 Email: 230000@upnet.gr
-          </p>
-          <p>  
-            Name: Nikolaos Nikolaou AM: 230000 Email: 230000@upnet.gr
-          </p>
-          <p>  
-            Name: Christina Sialma AM: 235962 Email: 235962@upnet.gr
-          </p> */}
       </div>
       </div>
         
